@@ -1,0 +1,241 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:local="clr-namespace:DCS_Detent_Calculation_Spreadsheet"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="DCS_Detent_Calculation_Spreadsheet.MainWindow"
+        mc:Ignorable="d"
+        Title="DCS-Detent Calculator Spreadsheet by JD of CI" Height="380" Width="480" BorderBrush="Black" BorderThickness="2" Background="#FF32557A" WindowStyle="None" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+        </Style>
+        <Style TargetType="{x:Type Button}">
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="notCalledBorder" TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="#FFA5C7EC" />
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <!--Margin-->
+            <ColumnDefinition Width="0" />
+            <!--Margin-->
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <!--Margin-->
+            <ColumnDefinition Width="0" />
+            <!--Margin-->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <!--Margin-->
+            <RowDefinition Height="20"/>
+            <!--Margin-->
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="52*"/>
+            <!--Margin-->
+            <RowDefinition Height="5"/>
+            <!--Margin-->
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Orientation="Horizontal"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Background="#FF1E4166"
+                    PreviewMouseLeftButtonDown="titleBar_leftButtonDown">
+            
+            <Image Source="/Resources/InkLogoExcel1k.png"  Margin="2,1,1,1" />
+
+            <TextBlock Grid.Row="0" Grid.Column="0"  Text="DCS-Detent Calculator Software v1 by JC of DI and Bailey" 
+                  Foreground="White" FontSize="14" VerticalAlignment="Stretch"
+                   FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="4" >
+        </TextBlock>
+
+        
+            
+        </StackPanel>
+        
+        <Button x:Name="button_close" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" 
+                    Margin="5,0" Click="button_close_click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Rectangle Fill="Red" Width="10" Height="10">
+                    </Rectangle>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
+
+        <!--<Viewbox Grid.Column="1" Grid.Row="1" Margin="5"
+                 Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Stretch">-->
+        <TextBlock x:Name="textBlock_selectAircraft" Width="AUTO" Grid.Column="1" Grid.Row="1" Margin="5"
+                   IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                   Text="Select Aircraft:" FontWeight="Bold"/>
+        <!--</Viewbox>-->
+
+        <!--<Viewbox Grid.Column="2" Grid.Row="1" Margin="5"
+                 Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">-->
+            <TextBlock x:Name="textBlock_axisTunePreview" Width="AUTO"
+                   Grid.Column="2" Grid.Row="1" Margin="5"
+                   IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="Axis Tune Preview" FontWeight="Bold"/>
+        <!--</Viewbox>-->
+
+        <ListBox HorizontalContentAlignment="Stretch" Grid.Column="1" Grid.Row="2" Width="200" Height="200"
+                 Grid.RowSpan="4" x:Name="listBox1" SelectionChanged="listBox1_SelectionChanged"
+                 FontSize="20" FontWeight="Bold" VerticalAlignment="Top" Margin="5">
+        </ListBox>
+        
+
+        <Canvas Height="200" Width="200" x:Name="canvas" Margin="5"
+                Grid.Column="2" Grid.Row="2" Background="White"
+                RenderTransformOrigin="0.5,0.5">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                    <SkewTransform AngleY="0" AngleX="0"/>
+                    <RotateTransform Angle="0"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Canvas.RenderTransform>
+        </Canvas>
+
+        <!--The good plot-->
+
+        <!--<oxy:Plot x:Name="oxy_axisTunePreview" Grid.Row="2" Grid.Column="2" Grid.RowSpan="5" HorizontalContentAlignment="Center" 
+                  VerticalContentAlignment="Center" UseLayoutRounding="False" 
+                  DisconnectCanvasWhileUpdating="True" IsManipulationEnabled="False" 
+                  IsMouseWheelEnabled="False" RenderTransformOrigin="0,0" Subtitle="" 
+                  SubtitleFontWeight="Bold" LegendOrientation="Horizontal" BorderThickness="0" Focusable="False" FontWeight="Bold" IsTabStop="False" MinHeight="100" MinWidth="100"  >
+            <oxy:Plot.Series >
+                <oxy:LineSeries ItemsSource="{Binding Points}" StrokeThickness="3" />
+            </oxy:Plot.Series>-->
+
+        <!--End of the good Plot-->
+
+        <!--<Viewbox Grid.Column="2" Grid.Row="6" Margin="5"
+                 Stretch="Uniform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">-->
+            <TextBlock x:Name="textBlock_calculationText" Width="AUTO"
+                  Grid.Column="2" Grid.Row="6" Margin="5" FontSize="15"
+                   IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Results" FontWeight="Bold"/>
+        <!--</Viewbox>-->
+
+        <Grid Grid.Column="1" Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal"  Grid.Column="0" Grid.Row="0" Margin="0" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock x:Name="textBlock_detentLocation" Width="AUTO"
+                  Margin="5"
+                   IsEnabled="False" VerticalAlignment="Center" HorizontalAlignment="Left"
+                   Text="Detent Location:" FontWeight="Bold"/>
+
+
+                <xctk:IntegerUpDown x:Name="IntegerUpDown_detentLocation" Height="30"
+                   FontSize="20" Minimum="1" Maximum="99" Width="50" 
+                   IsEnabled="True"  
+                   FontWeight="Bold" Background="Orange" DataContextChanged="IntegerUpDown_detentLocation_changed" ValueChanged="IntegerUpDown_detentLocation_valueChanged" />
+
+            </StackPanel>
+        </Grid>
+
+        <!--Results Grid-->
+
+        <Grid Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" Margin="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <!--<Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="11"  BorderBrush="Green" BorderThickness="1"/>-->
+
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="0" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result00"   Width="AUTO" Height="AUTO" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="1" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result01" Width="AUTO" Height="AUTO" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="2" Grid.Row="0" >
+                <TextBlock x:Name="textBlock_Result02" Width="AUTO" Height="AUTO"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="3" Grid.Row="0" >
+                <TextBlock x:Name="textBlock_Result03" Width="AUTO" Height="AUTO"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="4" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result04" Width="AUTO" Height="AUTO" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="5" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result05" Width="AUTO" Height="AUTO" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="6" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result06" Width="AUTO" Height="AUTO"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="7" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result07" Width="AUTO" Height="AUTO" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="8" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result08" Width="AUTO" Height="AUTO"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="9" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result09" Width="AUTO" Height="AUTO" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+            <Border Style="{StaticResource notCalledBorder}" Grid.Column="10" Grid.Row="0">
+                <TextBlock x:Name="textBlock_Result10" Width="AUTO" Height="AUTO" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9DD6E8"/>
+            </Border>
+
+            <TextBlock Text=" *Please read the Readme before using this calculator."
+                       Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="11" FontSize="13" />
+            <!--<Image Source="/Resources/InkLogoExcel1k.png" Grid.Column="0" Grid.Row="0" Width="25" Height="25"/>-->
+        </Grid>
+        
+        
+    </Grid>
+</Window>

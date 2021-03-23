@@ -1,0 +1,9 @@
+﻿<Application x:Class="DCS_Detent_Calculation_Spreadsheet.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DCS_Detent_Calculation_Spreadsheet"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
